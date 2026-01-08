@@ -115,10 +115,10 @@ df_partner_final = spark.read\
 
 # DBTITLE 1,select only specific cols
 partner_selected_df = df_partner_final.select(col("partner_Id"), 
-                                                col("par_name"), 
+                                                col("name"), 
                                                 col("create_date"), 
                                                 col("display_name"), 
-                                                col("par_email"), 
+                                                col("email"), 
                                                 col("mobile"), 
                                                 col("coordinates"), 
                                                 col("nit_name"),

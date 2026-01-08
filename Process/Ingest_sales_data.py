@@ -3,7 +3,7 @@ dbutils.widgets.removeAll()
 
 # COMMAND ----------
 
-from pyspark.sql.types import StructType, StructField, IntegerType, StringType, DateType
+from pyspark.sql.types import StructType, StructField, IntegerType, StringType, DateType, DoubleType
 from pyspark.sql.functions import current_timestamp, to_timestamp, concat, col, lit
 
 # COMMAND ----------
@@ -25,11 +25,11 @@ ruta = f"abfss://{container}@adlssmartdatasvar0912.dfs.core.windows.net/DataAgua
 sales_schema = StructType(fields=[  StructField("default_code", StringType(), True),
                                     StructField("sales_id", IntegerType(), False),
                                     StructField("product_id", IntegerType(), False), 
-                                    StructField("product_uom", StringType(), True),
-                                    StructField("product_uom_qty", IntegerType(), True),
-                                    StructField("qty_delivered", IntegerType(), False),
-                                    StructField("qty_invoiced", IntegerType(), False),
-                                    StructField("qty_to_invoice", IntegerType(), True),
+                                    StructField("product_uom", IntegerType(), False),
+                                    StructField("product_uom_qty", DoubleType(), False),
+                                    StructField("qty_delivered", DoubleType(), False),
+                                    StructField("qty_invoiced", DoubleType(), False),
+                                    StructField("qty_to_invoice", DoubleType(), True),
                                     StructField("price_total", DoubleType(), True),
                                     StructField("price_subtotal", DoubleType(), True),
                                     StructField("nbr", IntegerType(), True),
@@ -65,10 +65,20 @@ sales_with_timestamp_df = sales_df.withColumn("ingestion_date", current_timestam
 
 # COMMAND ----------
 
-races_selected_df = races_with_timestamp_df.select(col('sales_id'), 
+sales_with_timestamp_df.display()
+
+# COMMAND ----------
+
+#%sql
+#drop table catalog_smartdata.bronze.sales
+
+# COMMAND ----------
+
+sales_selected_df = sales_with_timestamp_df.select(col('sales_id'), 
                                                    col('default_code').alias('product_code'), 
+                                                   col('partner_id'),
                                                    col('product_id'), 
-                                                   col('circuitId').alias('circuit_id'),
+                                                   col('product_uom_qty'),
                                                    col('qty_delivered'), 
                                                    col('qty_invoiced'), 
                                                    col('qty_to_invoice'),
