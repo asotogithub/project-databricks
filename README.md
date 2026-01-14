@@ -190,11 +190,13 @@ En tu repositorio: **Settings** → **Secrets and variables** → **Actions**
 |------------|---------------|
 | `DATABRICKS_HOST` | `https://adb-xxxxx.azuredatabricks.net` |
 | `DATABRICKS_TOKEN` | `dapi_xxxxxxxxxxxxxxxx` |
+| `DATABRICKS_HOST` | `https://adb-xxxxx.azuredatabricks.net` |
+| `DATABRICKS_TOKEN` | `dapi_xxxxxxxxxxxxxxxx` |
 
 ### 4️⃣ Verificar Storage Configuration
 
 ```python
-storage_path = "abfss://raw@adlsprojectsmartdata.dfs.core.windows.net"
+storage_path = "abfss://raw@adlssmartdatasvar0912.dfs.core.windows.net"
 ```
 
 <div align="center">
@@ -270,8 +272,8 @@ Workflow: Deploy ETL Apple Sales And Warranty
 ⏱️ Timeout total: 4 horas
  🔒 Max concurrent runs: 1
 ⏰ Notificaciones: 
-      success: isc.ventura@gmail.com
-      failed:  isc.ventura@gmail.com
+      success: abel.soto2009@gmail.com
+      failed:  abel.soto2009@gmail.com
 ```
 
 ---
