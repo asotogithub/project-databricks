@@ -127,7 +127,7 @@ project_databricks/
 |   ├── 🐍 Permissions.ipynb               # Sql Grants
 ├── 📂 Reversion/
 |   ├── 🐍 Revoke.ipynb                    # Revoke permissions
-├── 📂 dashboards/                         # Databricks Dashboards 
+├── 📂 Dashboards/                         # Databricks Dashboards 
 |   ├── 📊 Dashboard_v2.pbix               # Dashboads
 |   ├── 📊 Sashboard_v1.pbix               # Dasboards
 ├── 📂 DataSet/                            # Data Set usados para este proyecto 
@@ -145,7 +145,7 @@ project_databricks/
 | Tecnología | Propósito |
 |:----------:|:----------|
 | ![Databricks](https://img.shields.io/badge/Azure_Databricks-FF3621?style=flat-square&logo=databricks&logoColor=white) | Motor de procesamiento distribuido Spark |
-| ![Delta Lake](https://img.shields.io/badge/Delta_Lake-00ADD8?style=flat-square&logo=delta&logoColor=white) | Storage layer con ACID transactions |
+| ![Data Lake](https://img.shields.io/badge/Delta_Lake-00ADD8?style=flat-square&logo=delta&logoColor=white) | Storage layer con ACID transactions |
 | ![PySpark](https://img.shields.io/badge/PySpark-E25A1C?style=flat-square&logo=apache-spark&logoColor=white) | Framework de transformación de datos |
 | ![ADLS](https://img.shields.io/badge/ADLS_Gen2-0078D4?style=flat-square&logo=microsoft-azure&logoColor=white) | Data Lake para almacenamiento persistente |
 | ![GitHub Actions](https://img.shields.io/badge/GitHub_Actions-2088FF?style=flat-square&logo=github-actions&logoColor=white) | Automatización CI/CD |
