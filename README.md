@@ -1,4 +1,4 @@
-# prj_databricks
+# project_databricks
 Projecto del curso databricks
 
 <div align="center">
@@ -9,10 +9,9 @@ Projecto del curso databricks
 [![Azure](https://img.shields.io/badge/Azure-0078D4?style=for-the-badge&logo=microsoft-azure&logoColor=white)](https://azure.microsoft.com/)
 [![PySpark](https://img.shields.io/badge/PySpark-E25A1C?style=for-the-badge&logo=apache-spark&logoColor=white)](https://spark.apache.org/)
 [![Delta Lake](https://img.shields.io/badge/Delta_Lake-00ADD8?style=for-the-badge&logo=delta&logoColor=white)](https://delta.io/)
-[![Databricks Dashboards](https://img.shields.io/badge/Databricks Dashboards-F2C81?style=for-the-badge&logo=databricks&logoColor=black)](https://databricks.com/)
 [![CI/CD](https://img.shields.io/badge/CI%2FCD-GitHub_Actions-2088FF?style=for-the-badge&logo=github-actions&logoColor=white)](https://github.com/features/actions)
-
-*Pipeline automatizado de datos para análisis de ventas y garantias de Apple Stores con arquitectura de tres capas y despliegue continuo*
+[![Power BI]()](https://powerbi.com/)
+*Pipeline automatizado de datos para análisis de ventas de una empresa de produccion de derivados de Agua con arquitectura de tres capas y despliegue continuo*
 
 </div>
 
@@ -20,16 +19,15 @@ Projecto del curso databricks
 
 ## 🎯 Descripción
 
-Pipeline ETL enterprise-grade que transforma datos crudos de ventas y garantias de tiendas Apple de diferentes años y paises, implementando la **Arquitectura Medallion** (Bronze-Silver-Gold) en Azure Databricks con **CI/CD completo** y **Delta Lake** para garantizar consistencia ACID.
+Pipeline ETL enterprise-grade que transforma datos crudos de ventas (sales) diferentes años , implementando la **Arquitectura Medallion** (Bronze-Silver-Gold) en Azure Databricks con **CI/CD completo** y power BI para desplegar los datos en dashboards.
 
 ### ✨ Características Principales
-
-- 🔄 **ETL Automatizado** - Pipeline completo con despliegue automático via GitHub Actions
+El Projecto contendra los sigueintes aspectos
 - 🏗️ **Arquitectura Medallion** - Separación clara de capas Bronze → Silver → Gold
+- 🔄 **ETL Automatizado** - Pipeline completo con despliegue automático via GitHub Actions
 - 📊 **Modelo Dimensional** - Star Schema optimizado para análisis de negocio
 - 🚀 **CI/CD Integrado** - Deploy automático en cada push a master
-- 📈 **Databricks Dashboards** - Visualización
-- ⚡ **Delta Lake** - ACID transactions y time travel capabilities
+- 📈 **Power BI** - Visualización
 - 🔔 **Monitoreo** - Notificaciones automáticas y logs detallados
 
 ---
@@ -41,11 +39,11 @@ Pipeline ETL enterprise-grade que transforma datos crudos de ventas y garantias 
 ```
 📄 CSV (Raw Data)
     ↓
-🥉 Bronze Layer (Ingesta sin transformación)
+🥉 Bronze Layer (Ingesta de datos del sistema transacciona sin transformación)
     ↓
-🥈 Silver Layer (Limpieza + Modelo Dimensional)
+🥈 Silver Layer (Limpieza de datos antes de enviarlos a la capa golden y almacenarlos en el modelo dimensional)
     ↓
-🥇 Gold Layer (Agregaciones de Negocio)
+🥇 Gold Layer (Alamcenamiento de todos los datos en el modelo dimencional)
     ↓
 📊 Databricks Dashboards (Visualización)
 ```
@@ -60,36 +58,30 @@ Pipeline ETL enterprise-grade que transforma datos crudos de ventas y garantias 
 <td width="33%" valign="top">
 
 #### 🥉 Bronze Layer
-**Propósito**: Zona de aterrizaje
+**Propósito**: Zona de almacenamiento de datos sin procesar, tal cual son obtenidos del proveedor.
 
 **Tablas**: 
-- `category` 
-- `products` 
-- `warranty`
-- `sales` 
-- `stores`
+- `Partners` 
+- `sales`
 
 **Características**:
 - ✅ Datos tal como vienen de origen
 - ✅ Timestamp de ingesta
-- ✅ Preservación histórica
 - ✅ Sin validaciones
 
 </td>
 <td width="33%" valign="top">
 
 #### 🥈 Silver Layer
-**Propósito**: Modelo dimensional
+**Propósito**: Limpieza de datos
 
 **Tablas**:
-- `category_sales`
-- `product_sales`
-- `store_sales`
-- `store_warranty_status`
-- `warranty_products`
+- `partners`
+- `products`
+- `sales`
 
 **Características**:
-- ✅ Star Schema
+- ✅ catalog_smartdata Schema
 - ✅ Datos normalizados
 - ✅ Validaciones completas
 
@@ -100,17 +92,15 @@ Pipeline ETL enterprise-grade que transforma datos crudos de ventas y garantias 
 **Propósito**: Analytics-ready
 
 **Tablas**:
-- kpi_category_sales        : Monto total en ventas agrupado por categoría y año
-- kpi_product_sales         : Monto total en ventas agrupado por producto y año
-- kpi_store_sales           : Monto total en ventas agrupado por tienda y año
-- kpi_store_warranty_status : Total de reclamos por tienda en los diferentes estatus pivot
-- kpi_product_warranty      : Productos con mayor reclamos post venta (garantía)
+- dim_parents    : Tabla dimension Parents
+- dim_products   : Tabla Dimension Productos
+- kpi_sales      : Tabla KPI Sales
 
 **Características**:
-- ✅ Pre-agregados
+- ✅ Cargado Total de la data despues de su transformacion
 - ✅ Optimizado para BI
 - ✅ Performance máximo
-- ✅ Actualizaciones automáticas
+- ✅ Tablas y datos listos para explotarlos en Power BI
 
 </td>
 </tr>
@@ -121,26 +111,25 @@ Pipeline ETL enterprise-grade que transforma datos crudos de ventas y garantias 
 ## 📁 Estructura del Proyecto
 
 ```
-etl-apple/
+project_databricks/
 │
 ├── 📂 .github/
 │   └── 📂 workflows/
-│       └── 📄 deploy-certification.yml    # Pipeline CI/CD deploy a certification workspace databricks
-├── 📂 process/
-│   ├── 🐍 ingest_catalogs.py           # Bronze layer
-│   ├── 🐍 ingest_sales.py              # Bronze Layer
-│   ├── 🐍 ingest_warranty.py           # Bronze Layer
-│   ├── 🐍 transform_sales.py           # Silver Layer
-│   ├── 🐍 transform_warranty.py        # Silver Layer
-│   └── 🐍 load_sales.py                # Gold Layer
-│   └── 🐍 load_warranty.py             # Gold Layer
-├── 📂 scrips/
-|   ├── 🐍 Enviroment preparation.py    # Create Schema, Tables, External location
-├── 📂 security/
-|   ├── 🐍 Permissions.py               # Sql Grant
-├── 📂 reversion/
-|   ├── 🐍 revoke.py               # Revoke permissions
+│       └── 📄 script0.yml    # Pipeline CI/CD deploy de todo el proceso in PROD
+├── 📂 Process/
+│   ├── 🐍 Ingest_partner_data.py           # Bronze layer
+│   ├── 🐍 Ingest_sales_data.py             # Bronze Layer
+│   └── 🐍 Load.ipynb                       # Gold Layer
+│   └── 🐍 Transform.ipynb                  # Gold Layer
+├── 📂 Scrips/
+|   ├── 🐍 Enviroment_preparation.ipynb    # Create Schema, Tables, External location
+├── 📂 Security/
+|   ├── 🐍 Permissions.ipynb               # Sql Grants
+├── 📂 Reversion/
+|   ├── 🐍 Revoke.ipynb               # Revoke permissions
 ├── 📂 dashboards/                 # Databricks Dashboards 
+|   ├── 📊 Dashboard_v2.pbix               # Dashboads
+|   ├── 📊 Sashboard_v1.pbix               # Dasboards
 └── 📄 README.md
 ```
 
