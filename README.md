@@ -324,15 +324,15 @@ https://github.com/guaru/project-databricks/tree/dev/dashboards
 
 ## 📄 Licencia
 
-Este proyecto está bajo la Licencia MIT - ver el archivo [LICENSE](LICENSE) para más detalles.
+Este proyecto tiene licencia free
 
 ---
 
 <div align="center">
 
 **Proyecto**: Data Engineering - Arquitectura Medallion  
-**Tecnología**: Azure Databricks + Delta Lake + CI/CD  
-**Última actualización**: 2025
+**Tecnología**: Azure Databricks + Power BI + CI/CD  
+**Última actualización**: 2026
 
 
 </div>
