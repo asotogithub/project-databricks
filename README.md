@@ -126,10 +126,13 @@ project_databricks/
 ├── 📂 Security/
 |   ├── 🐍 Permissions.ipynb               # Sql Grants
 ├── 📂 Reversion/
-|   ├── 🐍 Revoke.ipynb               # Revoke permissions
-├── 📂 dashboards/                 # Databricks Dashboards 
+|   ├── 🐍 Revoke.ipynb                    # Revoke permissions
+├── 📂 dashboards/                         # Databricks Dashboards 
 |   ├── 📊 Dashboard_v2.pbix               # Dashboads
 |   ├── 📊 Sashboard_v1.pbix               # Dasboards
+├── 📂 DataSet/                            # Data Set usados para este proyecto 
+|   ├── 📊 res_partner_2025.csv            # partners de la empresa
+|   ├── 📊 rep_ventas_2025.csv             # Sales desde 2017 - 2025
 └── 📄 README.md
 ```
 
@@ -156,9 +159,8 @@ project_databricks/
 
 - ☁️ Cuenta de Azure con acceso a Databricks
 - 💻 Workspace de Databricks configurado
-- 🖥️ Cluster activo (nombre: `Cluster1`)
+- 🖥️ Cluster activo (nombre: `Cluster_SD`)
 - 🐙 Cuenta de GitHub con permisos de administrador
-- 📦 Azure Data Lake Storage Gen2 configurado
 - 📊 Power BI Desktop (opcional para visualización)
 
 ---
