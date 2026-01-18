@@ -170,7 +170,7 @@ project_databricks/
 ### 1️⃣ Clonar el Repositorio
 
 ```bash
-git clone https://github.com/guaru/project-databricks.git
+git https://github.com/asotogithub/project-databricks.git
 cd project-databricks
 ```
 
@@ -235,17 +235,14 @@ git push origin dev
 
 ### 🔧 Ejecución Local en Databricks
 
-Navegar a `/Production/ETL-APPLE` y ejecutar en orden:
+Navegar a `/py/ETL-AGUA` y ejecutar en orden:
 
 ```
-- Enviroment preparation.py         → Crear esquema
-- ingest_catalogs.py                → Bronze Layer
-- ingest_sales.py                   → Bronze Layer
-- ingest_warranty.py                → Bronze Layer
-- transform_sales.py                → Silver Layer
-- transform_warranty.py             → Silver Layer
-- load_sales.py                     → Gold Layer
-- load_warranty.py                  → Gold Layer
+- Enviroment_preparation.ipynb      → Crear esquema
+- Ingest_partner_data.py            → Bronze Layer
+- Ingest_sales_data.py              → Bronze Layer
+- Transform.py                      → Silver Layer
+- Load.py                           → Gold Layer
 ```
 
 ---
@@ -256,11 +253,11 @@ Navegar a `/Production/ETL-APPLE` y ejecutar en orden:
 ### Pipeline de GitHub Actions
 
 ```yaml
-Workflow: Deploy ETL Apple Sales And Warranty
-├── Deploy notebooks → /Production/ETL-APPLE
+Workflow: Deploy ETL AGUA SALES and PARTNERS
+├── Deploy notebooks → /py/ETL-AGUA
 ├── Eliminar workflow antiguo (si existe)
 ├── Buscar cluster configurado
-├── Crear nuevo workflow con 4 tareas
+├── Crear nuevo workflow con 3 tareas
 ├── Ejecutar pipeline automáticamente
 └── Monitorear y notificar resultados
 ```
