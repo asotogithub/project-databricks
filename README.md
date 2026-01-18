@@ -220,7 +220,7 @@ git push origin dev
 ```
 
 **GitHub Actions ejecutará**:
-- 📤 Deploy de notebooks a `/Production/ETL-AGUA`
+- 📤 Deploy de notebooks a `/py/ETL_AGUA`
 - 🔧 Creación del workflow `WF_PROD_ETL_AGUA_SALES`
 - ▶️ Ejecución completa:  Bronze → Silver → Gold
 - 📧 Notificaciones de resultados
