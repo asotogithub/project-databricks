@@ -111,11 +111,11 @@ jobs:
           exit 1
         fi
     
-    - name: Create Databricks Workflow WF_ADB
+    - name: Create Databricks Workflow WF_PROD_ETL_AGUA_SALES
       run: |
         DEST_HOST=${{ secrets.DATABRICKS_DEST_HOST }}
         DEST_TOKEN=${{ secrets.DATABRICKS_DEST_TOKEN }}
-        DEST_BASE="/py/scripts/main"
+        DEST_BASE="/py/scripts/ETL_AGUA"
         CLUSTER_ID="${{ env.CLUSTER_ID }}"
         
         echo "Creando workflow: WF_ADB con cluster existente ID: $CLUSTER_ID"
@@ -123,14 +123,14 @@ jobs:
         # Crear el JSON del workflow usando cluster existente
         cat > workflow_config.json << EOF
         {
-          "name": "WF_ADB",
+          "name": "WF_PROD_ETL_AGUA_SALES",
           "format": "MULTI_TASK",
           "tasks": [
             {
               "task_key": "tarea1_notebook1",
               "description": "Ejecuta notebook ntbk_1",
               "notebook_task": {
-                "notebook_path": "/py/scripts/main/ntbk_1",
+                "notebook_path": "/py/scripts/ETL_AGUA/ntbk_1",
                 "source": "WORKSPACE"
                 
               },

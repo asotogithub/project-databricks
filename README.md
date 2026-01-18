@@ -262,11 +262,6 @@ Workflow: Deploy ETL AGUA SALES and PARTNERS
 └── Monitorear y notificar resultados
 ```
 
-### 🔄  Workflow Databricks
-![Texto descriptivo](CICD_ETL_APPLE.png)
-```
-
-
 ⏰ Schedule: Diario 8:00 AM (Lima)
 ⏱️ Timeout total: 4 horas
  🔒 Max concurrent runs: 1
@@ -278,15 +273,14 @@ Workflow: Deploy ETL AGUA SALES and PARTNERS
 ---
 
 ## 📈 Dashboards
-https://github.com/guaru/project-databricks/tree/dev/dashboards
-
+Los reportes y Dashboards se realizaron Power BI
 ## 🔍 Monitoreo
 
 ### En Databricks
 
 **Workflows**:
 - Ir a **Workflows** en el menú lateral
-- Buscar `ETL_PROD_APPLE_SALES`
+- Buscar `ETL_PROD_AGUA`
 - Ver historial de ejecuciones
 
 **Logs por Tarea**:
